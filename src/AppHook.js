@@ -6,21 +6,27 @@ const AppHook = () => {
     const [result, setResult] = useState(" ")
 
     const verificarPressao = () => {
-        let resultPressão
 
         if (sistolica < 130 && diastolica < 85) {
-            resultPressão = "Normal"
+            setResult("Normal")
         } else if (sistolica < 140 && diastolica < 90) {
-            resultPressão = "Normal - Limitrofe"
+            setResult("Normal - Limitrofe")
         } else if (sistolica < 160 && diastolica < 100) {
-            resultPressão = "Hipertensão Leve"
+            setResult("Hipertensão Leve")
         } else if (sistolica < 180 && diastolica < 110) {
-            resultPressão = "Hipertensão Moderada"
+            setResult("Hipertensão Moderada")
         } else {
-            resultPressão = "Hipertensão Grave"
+            setResult("Hipertensão Grave")
         }
 
-        setResult(<p>Seu diagnóstico é: {resultPressão}</p>)
+    }
+
+    const showResult = () => {
+        if (result !== " ") {
+            return <p>Seu diagnóstico é: {result}</p>
+        }
+
+        return null
     }
 
     return (
@@ -41,7 +47,7 @@ const AppHook = () => {
 
             <br />
 
-            {result}
+            {showResult()}
 
         </div>
     )
